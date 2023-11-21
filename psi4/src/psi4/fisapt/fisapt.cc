@@ -5175,19 +5175,19 @@ void FISAPT::print_trailer() {
     if (reference_->has_potential_variable("A") && reference_->has_potential_variable("B")) {
         scalars_["Electrostatics"] += scalars_["Extern-Extern"];
     }
-    scalars_["Exchange"] = scalars_["Exch10"];
-    scalars_["Induction"] = scalars_["Ind20,r"] + scalars_["Exch-Ind20,r"] + scalars_["delta HF,r (2)"];
-    scalars_["sInduction"] = scalars_["Ind20,r"] + scalars_["sExch-Ind20,r"] + scalars_["delta HF,r (2)"];
-    scalars_["Dispersion"] = scalars_["Disp20"] + scalars_["Exch-Disp20"];
-    scalars_["sDispersion"] = scalars_["Disp20"] + scalars_["sExch-Disp20"];
-    scalars_["SAPT"] =
-        scalars_["Electrostatics"] + scalars_["Exchange"] + scalars_["Induction"] + scalars_["Dispersion"];
-    scalars_["sSAPT"] =
-        scalars_["Electrostatics"] + scalars_["Exchange"] + scalars_["sInduction"] + scalars_["sDispersion"];
+  //  scalars_["Exchange"] = scalars_["Exch10"];
+  //  scalars_["Induction"] = scalars_["Ind20,r"] + scalars_["Exch-Ind20,r"] + scalars_["delta HF,r (2)"];
+  //  scalars_["sInduction"] = scalars_["Ind20,r"] + scalars_["sExch-Ind20,r"] + scalars_["delta HF,r (2)"];
+  //  scalars_["Dispersion"] = scalars_["Disp20"] + scalars_["Exch-Disp20"];
+  //  scalars_["sDispersion"] = scalars_["Disp20"] + scalars_["sExch-Disp20"];
+  //  scalars_["SAPT"] =
+  //      scalars_["Electrostatics"] + scalars_["Exchange"] + scalars_["Induction"] + scalars_["Dispersion"];
+  //  scalars_["sSAPT"] =
+  //      scalars_["Electrostatics"] + scalars_["Exchange"] + scalars_["sInduction"] + scalars_["sDispersion"];
 
-    double Sdelta = scalars_["Induction"] / (scalars_["Ind20,r"] + scalars_["Exch-Ind20,r"]);
-    scalars_["Induction (A<-B)"] = Sdelta * (scalars_["Ind20,r (A<-B)"] + scalars_["Exch-Ind20,r (A<-B)"]);
-    scalars_["Induction (B<-A)"] = Sdelta * (scalars_["Ind20,r (B<-A)"] + scalars_["Exch-Ind20,r (B<-A)"]);
+  //  double Sdelta = scalars_["Induction"] / (scalars_["Ind20,r"] + scalars_["Exch-Ind20,r"]);
+  //  scalars_["Induction (A<-B)"] = Sdelta * (scalars_["Ind20,r (A<-B)"] + scalars_["Exch-Ind20,r (A<-B)"]);
+  //  scalars_["Induction (B<-A)"] = Sdelta * (scalars_["Ind20,r (B<-A)"] + scalars_["Exch-Ind20,r (B<-A)"]);
 
     outfile->Printf("  ==> Results <==\n\n");
 
@@ -5207,57 +5207,57 @@ void FISAPT::print_trailer() {
                         scalars_["Extern-Extern"] * 1000.0, scalars_["Extern-Extern"] * pc_hartree2kcalmol,
                         scalars_["Extern-Extern"] * pc_hartree2kJmol);
     }
-    outfile->Printf("\n");
+  //  outfile->Printf("\n");
 
-    outfile->Printf("    Exchange %3s              %16.8lf [mEh] %16.8lf [kcal/mol] %16.8lf [kJ/mol]\n", scaled.c_str(),
-                    scalars_["Exchange"] * 1000.0, scalars_["Exchange"] * pc_hartree2kcalmol,
-                    scalars_["Exchange"] * pc_hartree2kJmol);
-    outfile->Printf("      Exch10                  %16.8lf [mEh] %16.8lf [kcal/mol] %16.8lf [kJ/mol]\n",
-                    scalars_["Exch10"] * 1000.0, scalars_["Exch10"] * pc_hartree2kcalmol,
-                    scalars_["Exch10"] * pc_hartree2kJmol);
-    outfile->Printf("      Exch10(S^2)             %16.8lf [mEh] %16.8lf [kcal/mol] %16.8lf [kJ/mol]\n\n",
-                    scalars_["Exch10(S^2)"] * 1000.0, scalars_["Exch10(S^2)"] * pc_hartree2kcalmol,
-                    scalars_["Exch10(S^2)"] * pc_hartree2kJmol);
+  //  outfile->Printf("    Exchange %3s              %16.8lf [mEh] %16.8lf [kcal/mol] %16.8lf [kJ/mol]\n", scaled.c_str(),
+  //                  scalars_["Exchange"] * 1000.0, scalars_["Exchange"] * pc_hartree2kcalmol,
+  //                  scalars_["Exchange"] * pc_hartree2kJmol);
+  //  outfile->Printf("      Exch10                  %16.8lf [mEh] %16.8lf [kcal/mol] %16.8lf [kJ/mol]\n",
+  //                  scalars_["Exch10"] * 1000.0, scalars_["Exch10"] * pc_hartree2kcalmol,
+  //                  scalars_["Exch10"] * pc_hartree2kJmol);
+  //  outfile->Printf("      Exch10(S^2)             %16.8lf [mEh] %16.8lf [kcal/mol] %16.8lf [kJ/mol]\n\n",
+  //                  scalars_["Exch10(S^2)"] * 1000.0, scalars_["Exch10(S^2)"] * pc_hartree2kcalmol,
+  //                  scalars_["Exch10(S^2)"] * pc_hartree2kJmol);
 
-    outfile->Printf("    Induction %3s             %16.8lf [mEh] %16.8lf [kcal/mol] %16.8lf [kJ/mol]\n", scaled.c_str(),
-                    scalars_["Induction"] * 1000.0, scalars_["Induction"] * pc_hartree2kcalmol,
-                    scalars_["Induction"] * pc_hartree2kJmol);
-    outfile->Printf("      Ind20,r                 %16.8lf [mEh] %16.8lf [kcal/mol] %16.8lf [kJ/mol]\n",
-                    scalars_["Ind20,r"] * 1000.0, scalars_["Ind20,r"] * pc_hartree2kcalmol,
-                    scalars_["Ind20,r"] * pc_hartree2kJmol);
-    outfile->Printf("      Exch-Ind20,r %3s        %16.8lf [mEh] %16.8lf [kcal/mol] %16.8lf [kJ/mol]\n", scaled.c_str(),
-                    scalars_["Exch-Ind20,r"] * 1000.0, scalars_["Exch-Ind20,r"] * pc_hartree2kcalmol,
-                    scalars_["Exch-Ind20,r"] * pc_hartree2kJmol);
-    outfile->Printf("      delta HF,r (2) %3s      %16.8lf [mEh] %16.8lf [kcal/mol] %16.8lf [kJ/mol]\n", scaled.c_str(),
-                    scalars_["delta HF,r (2)"] * 1000.0, scalars_["delta HF,r (2)"] * pc_hartree2kcalmol,
-                    scalars_["delta HF,r (2)"] * pc_hartree2kJmol);
-    outfile->Printf("      Induction (A<-B) %3s    %16.8lf [mEh] %16.8lf [kcal/mol] %16.8lf [kJ/mol]\n", scaled.c_str(),
-                    scalars_["Induction (A<-B)"] * 1000.0, scalars_["Induction (A<-B)"] * pc_hartree2kcalmol,
-                    scalars_["Induction (A<-B)"] * pc_hartree2kJmol);
-    outfile->Printf("      Induction (B<-A) %3s    %16.8lf [mEh] %16.8lf [kcal/mol] %16.8lf [kJ/mol]\n\n",
-                    scaled.c_str(), scalars_["Induction (B<-A)"] * 1000.0,
-                    scalars_["Induction (B<-A)"] * pc_hartree2kcalmol, scalars_["Induction (B<-A)"] * pc_hartree2kJmol);
+  //  outfile->Printf("    Induction %3s             %16.8lf [mEh] %16.8lf [kcal/mol] %16.8lf [kJ/mol]\n", scaled.c_str(),
+  //                  scalars_["Induction"] * 1000.0, scalars_["Induction"] * pc_hartree2kcalmol,
+  //                  scalars_["Induction"] * pc_hartree2kJmol);
+  //  outfile->Printf("      Ind20,r                 %16.8lf [mEh] %16.8lf [kcal/mol] %16.8lf [kJ/mol]\n",
+  //                  scalars_["Ind20,r"] * 1000.0, scalars_["Ind20,r"] * pc_hartree2kcalmol,
+  //                  scalars_["Ind20,r"] * pc_hartree2kJmol);
+  //  outfile->Printf("      Exch-Ind20,r %3s        %16.8lf [mEh] %16.8lf [kcal/mol] %16.8lf [kJ/mol]\n", scaled.c_str(),
+  //                  scalars_["Exch-Ind20,r"] * 1000.0, scalars_["Exch-Ind20,r"] * pc_hartree2kcalmol,
+  //                  scalars_["Exch-Ind20,r"] * pc_hartree2kJmol);
+  //  outfile->Printf("      delta HF,r (2) %3s      %16.8lf [mEh] %16.8lf [kcal/mol] %16.8lf [kJ/mol]\n", scaled.c_str(),
+  //                  scalars_["delta HF,r (2)"] * 1000.0, scalars_["delta HF,r (2)"] * pc_hartree2kcalmol,
+  //                  scalars_["delta HF,r (2)"] * pc_hartree2kJmol);
+  //  outfile->Printf("      Induction (A<-B) %3s    %16.8lf [mEh] %16.8lf [kcal/mol] %16.8lf [kJ/mol]\n", scaled.c_str(),
+  //                  scalars_["Induction (A<-B)"] * 1000.0, scalars_["Induction (A<-B)"] * pc_hartree2kcalmol,
+  //                  scalars_["Induction (A<-B)"] * pc_hartree2kJmol);
+  //  outfile->Printf("      Induction (B<-A) %3s    %16.8lf [mEh] %16.8lf [kcal/mol] %16.8lf [kJ/mol]\n\n",
+  //                  scaled.c_str(), scalars_["Induction (B<-A)"] * 1000.0,
+  //                  scalars_["Induction (B<-A)"] * pc_hartree2kcalmol, scalars_["Induction (B<-A)"] * pc_hartree2kJmol);
 
-    outfile->Printf("    Dispersion %3s            %16.8lf [mEh] %16.8lf [kcal/mol] %16.8lf [kJ/mol]\n", scaled.c_str(),
-                    scalars_["Dispersion"] * 1000.0, scalars_["Dispersion"] * pc_hartree2kcalmol,
-                    scalars_["Dispersion"] * pc_hartree2kJmol);
-    outfile->Printf("      Disp20                  %16.8lf [mEh] %16.8lf [kcal/mol] %16.8lf [kJ/mol]\n",
-                    scalars_["Disp20"] * 1000.0, scalars_["Disp20"] * pc_hartree2kcalmol,
-                    scalars_["Disp20"] * pc_hartree2kJmol);
-    outfile->Printf("      Exch-Disp20 %3s         %16.8lf [mEh] %16.8lf [kcal/mol] %16.8lf [kJ/mol]\n\n",
-                    scaled.c_str(), scalars_["Exch-Disp20"] * 1000.0, scalars_["Exch-Disp20"] * pc_hartree2kcalmol,
-                    scalars_["Exch-Disp20"] * pc_hartree2kJmol);
+  //  outfile->Printf("    Dispersion %3s            %16.8lf [mEh] %16.8lf [kcal/mol] %16.8lf [kJ/mol]\n", scaled.c_str(),
+  //                  scalars_["Dispersion"] * 1000.0, scalars_["Dispersion"] * pc_hartree2kcalmol,
+  //                  scalars_["Dispersion"] * pc_hartree2kJmol);
+  //  outfile->Printf("      Disp20                  %16.8lf [mEh] %16.8lf [kcal/mol] %16.8lf [kJ/mol]\n",
+  //                  scalars_["Disp20"] * 1000.0, scalars_["Disp20"] * pc_hartree2kcalmol,
+  //                  scalars_["Disp20"] * pc_hartree2kJmol);
+  //  outfile->Printf("      Exch-Disp20 %3s         %16.8lf [mEh] %16.8lf [kcal/mol] %16.8lf [kJ/mol]\n\n",
+  //                  scaled.c_str(), scalars_["Exch-Disp20"] * 1000.0, scalars_["Exch-Disp20"] * pc_hartree2kcalmol,
+  //                  scalars_["Exch-Disp20"] * pc_hartree2kJmol);
 
-    outfile->Printf("  Total HF                    %16.8lf [mEh] %16.8lf [kcal/mol] %16.8lf [kJ/mol]\n",
-                    scalars_["HF"] * 1000.0, scalars_["HF"] * pc_hartree2kcalmol, scalars_["HF"] * pc_hartree2kJmol);
-    outfile->Printf("  Total SAPT0 %3s             %16.8lf [mEh] %16.8lf [kcal/mol] %16.8lf [kJ/mol]\n", scaled.c_str(),
-                    scalars_["SAPT"] * 1000.0, scalars_["SAPT"] * pc_hartree2kcalmol,
-                    scalars_["SAPT"] * pc_hartree2kJmol);
-    if (options_.get_bool("SSAPT0_SCALE")) {
-        outfile->Printf("  Total sSAPT0 %3s            %16.8lf [mEh] %16.8lf [kcal/mol] %16.8lf [kJ/mol]\n",
-                        scaled.c_str(), scalars_["sSAPT"] * 1000.0, scalars_["sSAPT"] * pc_hartree2kcalmol,
-                        scalars_["sSAPT"] * pc_hartree2kJmol);
-    }
+  //  outfile->Printf("  Total HF                    %16.8lf [mEh] %16.8lf [kcal/mol] %16.8lf [kJ/mol]\n",
+  //                  scalars_["HF"] * 1000.0, scalars_["HF"] * pc_hartree2kcalmol, scalars_["HF"] * pc_hartree2kJmol);
+  //  outfile->Printf("  Total SAPT0 %3s             %16.8lf [mEh] %16.8lf [kcal/mol] %16.8lf [kJ/mol]\n", scaled.c_str(),
+  //                  scalars_["SAPT"] * 1000.0, scalars_["SAPT"] * pc_hartree2kcalmol,
+  //                  scalars_["SAPT"] * pc_hartree2kJmol);
+  //  if (options_.get_bool("SSAPT0_SCALE")) {
+  //      outfile->Printf("  Total sSAPT0 %3s            %16.8lf [mEh] %16.8lf [kcal/mol] %16.8lf [kJ/mol]\n",
+  //                      scaled.c_str(), scalars_["sSAPT"] * 1000.0, scalars_["sSAPT"] * pc_hartree2kcalmol,
+  //                      scalars_["sSAPT"] * pc_hartree2kJmol);
+  //  }
     outfile->Printf("\n");
     outfile->Printf(
         "  --------------------------------------------------------------------------------------------------------\n");
@@ -5272,37 +5272,37 @@ void FISAPT::print_trailer() {
         Process::environment.globals["SAPT ELST EXTERN-EXTERN ENERGY"] = scalars_["Extern-Extern"];
     }
 
-    Process::environment.globals["SAPT EXCH ENERGY"] = scalars_["Exchange"];
-    Process::environment.globals["SAPT EXCH10 ENERGY"] = scalars_["Exch10"];
-    Process::environment.globals["SAPT EXCH10(S^2) ENERGY"] = scalars_["Exch10(S^2)"];
+  //  Process::environment.globals["SAPT EXCH ENERGY"] = scalars_["Exchange"];
+  //  Process::environment.globals["SAPT EXCH10 ENERGY"] = scalars_["Exch10"];
+  //  Process::environment.globals["SAPT EXCH10(S^2) ENERGY"] = scalars_["Exch10(S^2)"];
 
-    Process::environment.globals["SAPT IND ENERGY"] = scalars_["Induction"];
-    Process::environment.globals["SAPT IND20,R ENERGY"] = scalars_["Ind20,r"];
-    Process::environment.globals["SAPT EXCH-IND20,R ENERGY"] = scalars_["Exch-Ind20,r"];
-    Process::environment.globals["SAPT IND20,U ENERGY"] = scalars_["Ind20,u"];
-    Process::environment.globals["SAPT EXCH-IND20,U ENERGY"] = scalars_["Exch-Ind20,u"];
+  //  Process::environment.globals["SAPT IND ENERGY"] = scalars_["Induction"];
+  //  Process::environment.globals["SAPT IND20,R ENERGY"] = scalars_["Ind20,r"];
+  //  Process::environment.globals["SAPT EXCH-IND20,R ENERGY"] = scalars_["Exch-Ind20,r"];
+  //  Process::environment.globals["SAPT IND20,U ENERGY"] = scalars_["Ind20,u"];
+  //  Process::environment.globals["SAPT EXCH-IND20,U ENERGY"] = scalars_["Exch-Ind20,u"];
 
-    Process::environment.globals["SAPT DISP ENERGY"] = scalars_["Dispersion"];
-    Process::environment.globals["SAPT DISP20 ENERGY"] = scalars_["Disp20"];
-    Process::environment.globals["SAPT EXCH-DISP20 ENERGY"] = scalars_["Exch-Disp20"];
+  //  Process::environment.globals["SAPT DISP ENERGY"] = scalars_["Dispersion"];
+  //  Process::environment.globals["SAPT DISP20 ENERGY"] = scalars_["Disp20"];
+  //  Process::environment.globals["SAPT EXCH-DISP20 ENERGY"] = scalars_["Exch-Disp20"];
 
-    Process::environment.globals["SAPT0 TOTAL ENERGY"] = scalars_["SAPT"];
-    Process::environment.globals["SAPT TOTAL ENERGY"] = scalars_["SAPT"];
-    Process::environment.globals["CURRENT ENERGY"] = Process::environment.globals["SAPT TOTAL ENERGY"];
+  //  Process::environment.globals["SAPT0 TOTAL ENERGY"] = scalars_["SAPT"];
+  //  Process::environment.globals["SAPT TOTAL ENERGY"] = scalars_["SAPT"];
+  //  Process::environment.globals["CURRENT ENERGY"] = Process::environment.globals["SAPT TOTAL ENERGY"];
 
-    // Export the components of dHF to Psi4 variables
-    Process::environment.globals["SAPT HF(2) ENERGY ABC(HF)"] = scalars_["E_ABC_HF"];
-    Process::environment.globals["SAPT HF(2) ENERGY AC(0)"] = scalars_["E_AC"];
-    Process::environment.globals["SAPT HF(2) ENERGY BC(0)"] = scalars_["E_BC"];
-    Process::environment.globals["SAPT HF(2) ENERGY A(0)"] = scalars_["E_A"];
-    Process::environment.globals["SAPT HF(2) ENERGY B(0)"] = scalars_["E_B"];
-    Process::environment.globals["SAPT HF(2) ENERGY AC(HF)"] = scalars_["E_AC_HF"];
-    Process::environment.globals["SAPT HF(2) ENERGY BC(HF)"] = scalars_["E_BC_HF"];
-    Process::environment.globals["SAPT HF(2) ENERGY AB(HF)"] = scalars_["E_AB_HF"];
-    Process::environment.globals["SAPT HF(2) ENERGY A(HF)"] = scalars_["E_A_HF"];
-    Process::environment.globals["SAPT HF(2) ENERGY B(HF)"] = scalars_["E_B_HF"];
-    Process::environment.globals["SAPT HF(2) ENERGY C"] = scalars_["E_C"];
-    Process::environment.globals["SAPT HF(2) ENERGY HF"] = scalars_["HF"];
+  //  // Export the components of dHF to Psi4 variables
+  //  Process::environment.globals["SAPT HF(2) ENERGY ABC(HF)"] = scalars_["E_ABC_HF"];
+  //  Process::environment.globals["SAPT HF(2) ENERGY AC(0)"] = scalars_["E_AC"];
+  //  Process::environment.globals["SAPT HF(2) ENERGY BC(0)"] = scalars_["E_BC"];
+  //  Process::environment.globals["SAPT HF(2) ENERGY A(0)"] = scalars_["E_A"];
+  //  Process::environment.globals["SAPT HF(2) ENERGY B(0)"] = scalars_["E_B"];
+  //  Process::environment.globals["SAPT HF(2) ENERGY AC(HF)"] = scalars_["E_AC_HF"];
+  //  Process::environment.globals["SAPT HF(2) ENERGY BC(HF)"] = scalars_["E_BC_HF"];
+  //  Process::environment.globals["SAPT HF(2) ENERGY AB(HF)"] = scalars_["E_AB_HF"];
+  //  Process::environment.globals["SAPT HF(2) ENERGY A(HF)"] = scalars_["E_A_HF"];
+  //  Process::environment.globals["SAPT HF(2) ENERGY B(HF)"] = scalars_["E_B_HF"];
+  //  Process::environment.globals["SAPT HF(2) ENERGY C"] = scalars_["E_C"];
+  //  Process::environment.globals["SAPT HF(2) ENERGY HF"] = scalars_["HF"];
 }
 
 void FISAPT::raw_plot(const std::string& filepath) {

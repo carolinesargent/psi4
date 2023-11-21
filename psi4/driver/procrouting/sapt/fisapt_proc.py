@@ -61,26 +61,26 @@ def fisapt_compute_energy(self, external_potentials=None):
     self.unify_part2()
     self.freeze_core()
     self.do_cubes()
-    core.timer_on("FISAPT: Subsys E")
-    self.dHF()
-    core.timer_off("FISAPT: Subsys E")
+#    core.timer_on("FISAPT: Subsys E")
+#    self.dHF()
+#    core.timer_off("FISAPT: Subsys E")
 
     # => SAPT0 <=
 
     core.timer_on("FISAPT:SAPT:elst")
     self.elst()
     core.timer_off("FISAPT:SAPT:elst")
-    core.timer_on("FISAPT:SAPT:exch")
-    self.exch()
-    core.timer_off("FISAPT:SAPT:exch")
-    core.timer_on("FISAPT:SAPT:ind")
-    self.ind()
-    core.timer_off("FISAPT:SAPT:ind")
-    if not core.get_option("FISAPT", "FISAPT_DO_FSAPT"):
-        core.timer_on("FISAPT:SAPT:disp")
-        self.disp(self.matrices(), self.vectors(), True)  # Expensive, only do if needed  # unteseted translation of below
-        # self.disp(matrices_, vectors_, true)  # Expensive, only do if needed
-        core.timer_off("FISAPT:SAPT:disp")
+#    core.timer_on("FISAPT:SAPT:exch")
+#    self.exch()
+#    core.timer_off("FISAPT:SAPT:exch")
+#    core.timer_on("FISAPT:SAPT:ind")
+#    self.ind()
+#    core.timer_off("FISAPT:SAPT:ind")
+#    if not core.get_option("FISAPT", "FISAPT_DO_FSAPT"):
+#        core.timer_on("FISAPT:SAPT:disp")
+#        self.disp(self.matrices(), self.vectors(), True)  # Expensive, only do if needed  # unteseted translation of below
+#        # self.disp(matrices_, vectors_, true)  # Expensive, only do if needed
+#        core.timer_off("FISAPT:SAPT:disp")
 
     # => F-SAPT0 <=
 
@@ -251,5 +251,5 @@ def _drop(array, filepath):
 
 
 core.FISAPT.compute_energy = fisapt_compute_energy
-core.FISAPT.fdrop = fisapt_fdrop
-core.FISAPT.plot = fisapt_plot
+#core.FISAPT.fdrop = fisapt_fdrop
+#core.FISAPT.plot = fisapt_plot

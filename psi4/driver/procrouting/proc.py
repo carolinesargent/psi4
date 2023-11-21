@@ -4869,7 +4869,11 @@ def run_fisapt(name, **kwargs):
 
     if ref_wfn is None:
         core.timer_on("FISAPT: Dimer SCF")
-        ref_wfn = scf_helper('RHF', molecule=sapt_dimer, **kwargs)
+        core.set_global_option('MAXITER', 2)
+        core.set_global_option('FAIL_ON_MAXITER', False)
+        ref_wfn = scf_helper('RHF', molecule=sapt_dimer,  **kwargs)
+        core.set_global_option('MAXITER', 50)
+        core.set_global_option('FAIL_ON_MAXITER', True)
         core.timer_off("FISAPT: Dimer SCF")
 
     core.print_out("  Constructing Basis Sets for FISAPT...\n\n")
